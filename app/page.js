@@ -1,95 +1,64 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import Head from 'next/head';
+import PopularSights from './pages/PopularSights';
+import Categories from './pages/Categories';
+import FeaturedNews from './pages/FeaturedNews';
+import BottomMenuBar from './pages/BottomMenuBar';
+import NavBar from './pages/NavBar'
+import Search from './pages/Search'
+import CBCNews from "@/app/pages/CBCNews";
+import SportsCarousel from "@/app/pages/SportsCarousel";
+import PopularTags from "@/app/pages/PopularTags";
+import Tiles from "@/app/pages/Tiles";
+import React, { useState } from 'react';
+import Fashion from "@/app/pages/Fashion";
+import Culture from "@/app/pages/Culture";
+import Funny from "@/app/pages/Funny";
+import { Grid } from '@material-ui/core';
+import Technology from "@/app/pages/Technology";
+
 
 export default function Home() {
+
+    const [selectedCategory, setSelectedCategory] = useState('Toronto');
+
+    const handleCategoryClick = (categoryLabel) => {
+        setSelectedCategory(categoryLabel);
+    };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+      <div style={{padding:15}}>
+        <Head>
+          <title>News</title>
+          <meta name="description" content="Your newsfeed app description" />
+        </Head>
+
+          <Grid container spacing={2}>
+              <Grid item xs={12} sm={6} md={4}>
+                  {/* Content for the first grid item */}
+              </Grid>
+              <Grid item xs={12} sm={6} md={4}>
+                  <main>
+                      <NavBar/>
+                      <PopularSights />
+                      <PopularTags />
+                      <Fashion />
+                      <Technology />
+                      <Funny />
+                      <SportsCarousel />
+                      <Tiles searchQuery={selectedCategory} />
+
+                  </main>
+              </Grid>
+              <Grid item xs={12} sm={12} md={4}>
+                  {/* Content for the third grid item */}
+              </Grid>
+          </Grid>
+
+
+        <footer>
+            <BottomMenuBar />
+        </footer>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+  );
 }
